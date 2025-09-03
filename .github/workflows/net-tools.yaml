@@ -38,7 +38,8 @@ jobs:
         run: |
           IMAGE=${{ secrets.DOCKER_USERNAME }}/utilities
           GIT_SHA=${{ github.sha }}
-          trivy image --exit-code 1 --severity CRITICAL,HIGH $IMAGE:net-tools
+          trivy image --exit-code 1 --severity CRITICAL,HIGH $IMAGE:$GIT_SHA
+          #trivy image --exit-code 1 --severity CRITICAL,HIGH $IMAGE:net-tools
 
       # 6. Push Docker image (only if scan passes)
       - name: Push Docker image
