@@ -1,7 +1,7 @@
 FROM alpine:3.22
 
 # Install specific versions of network utilities
-RUN apk update && apk add --no-cache curl=8.12.1-r0
+RUN apk update && apk add --no-cache curl=8.14.1-r1
 
 # Create a non-root user
 RUN adduser -D netuser
