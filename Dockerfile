@@ -8,8 +8,7 @@ RUN apk update && apk add --no-cache \
     net-tools=2.10-r3 \
     bind-tools=9.20.12-r0 \
     tcpdump=4.99.5-r1 \
-    openssl=3.5.0-r0 \
-    nmap=7.97-r0
+    openssl=3.5.0-r0
 
 # Create a non-root user for safer container execution
 RUN adduser -D netuser
