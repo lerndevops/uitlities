@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.21.4
 
 # Install specific versions of network utilities
 RUN apk update && apk add --no-cache \
