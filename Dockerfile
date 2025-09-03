@@ -2,8 +2,8 @@ FROM alpine:3.20
 
 # Install specific versions of network utilities
 RUN apk update && apk add --no-cache \
-    curl=8.7.1-r1 \
-    iputils=20221215-r0 \
+    curl=8.15.0-r1 \
+    iputils=20250605-r0 \
     iproute2=5.19.0-r0 \
     net-tools=1.60.20221130-r0 \
     bind-tools=9.18.15-r0 \
