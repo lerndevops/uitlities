@@ -6,7 +6,9 @@ RUN apk update && apk add --no-cache \
     iputils=20240905-r0 \
     iproute2=6.15.0-r0 \
     net-tools=2.10-r3 \
-    bind-tools=9.20.12-r0
+    bind-tools=9.20.12-r0 \
+    tcpdump=4.99.5-r1 \
+    busybox-extras=1.37.0-r19
 
 # Create a non-root user for safer container execution
 RUN adduser -D netuser
