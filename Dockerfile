@@ -8,7 +8,6 @@ RUN apk update && apk add --no-cache \
     net-tools=2.10-r3 \
     bind-tools=9.20.12-r0 \
     tcpdump=4.99.5-r1 \
-    busybox-extras=1.37.0-r19 \
     openssl=3.5.0-r0 \
     nmap=7.97-r0
 
