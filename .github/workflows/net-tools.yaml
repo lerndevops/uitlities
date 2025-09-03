@@ -44,11 +44,10 @@ jobs:
       # 6. Scan Docker image with Trivy
       - name: Scan image with Trivy
         run: |
-          trivy image --exit-code 1 --severity CRITICAL,HIGH $IMAGE:$GIT_SHA
+          trivy image --exit-code 1 --severity CRITICAL,HIGH $IMAGE:net-tools
 
       # 7. Push Docker images (only if scan passes)
       - name: Push Docker image
         if: success()
         run: |
-          docker push $IMAGE:$GIT_SHA
           docker push $IMAGE:net-tools
