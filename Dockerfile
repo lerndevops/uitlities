@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.22
 
 # Install specific versions of network utilities
 RUN apk update && apk add --no-cache curl=8.12.1-r0
