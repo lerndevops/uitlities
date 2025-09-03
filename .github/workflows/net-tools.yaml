@@ -20,30 +20,31 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # 3. Build Docker image (from Dockerfile in repo root)
+      # 3. Set image variables
+      - name: Set image name and tag
+        run: |
+          echo "IMAGE=${{ secrets.DOCKER_USERNAME }}/utils" >> $GITHUB_ENV
+          echo "GIT_SHA=${{ github.sha }}" >> $GITHUB_ENV
+
+      # 4. Build Docker image (from Dockerfile in repo root)
       - name: Build Docker image
         run: |
-          IMAGE=${{ secrets.DOCKER_USERNAME }}/utilities
-          GIT_SHA=${{ github.sha }}
           docker build -f Dockerfile -t $IMAGE:$GIT_SHA -t $IMAGE:net-tools .
 
-      # 4. Install Trivy
+      # 5. Install Trivy
       - name: Install Trivy
         uses: aquasecurity/trivy-action@master
         with:
           version: latest
 
-      # 5. Scan Docker image with Trivy
+      # 6. Scan Docker image with Trivy
       - name: Scan image with Trivy
         run: |
-          IMAGE=${{ secrets.DOCKER_USERNAME }}/utilities
-          GIT_SHA=${{ github.sha }}
           trivy image --exit-code 1 --severity CRITICAL,HIGH $IMAGE:$GIT_SHA
-          #trivy image --exit-code 1 --severity CRITICAL,HIGH $IMAGE:net-tools
 
-      # 6. Push Docker image (only if scan passes)
+      # 7. Push Docker images (only if scan passes)
       - name: Push Docker image
         if: success()
         run: |
-          IMAGE=${{ secrets.DOCKER_USERNAME }}/utilities
+          docker push $IMAGE:$GIT_SHA
           docker push $IMAGE:net-tools
