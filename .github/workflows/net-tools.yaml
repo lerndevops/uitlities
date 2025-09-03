@@ -33,9 +33,13 @@ jobs:
 
       # 5. Install Trivy
       - name: Install Trivy
-        uses: aquasecurity/trivy-action@master
-        with:
-          version: latest
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget apt-transport-https gnupg lsb-release
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+          echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update
+          sudo apt-get install -y trivy
 
       # 6. Scan Docker image with Trivy
       - name: Scan image with Trivy
