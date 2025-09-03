@@ -16,5 +16,6 @@ RUN apk add --no-cache \
     socat \
     nmap
 
+USER 1001
 # Default command: open a shell
 CMD ["/bin/bash"]
