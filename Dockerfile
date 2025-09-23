@@ -4,7 +4,6 @@ FROM alpine:3.22
 RUN apk update && apk add --no-cache \
     curl=8.14.1-r1 \
     iputils=20240905-r0 \
-    bash \
     iproute2=6.15.0-r0 \
     net-tools=2.10-r3 \
     bind-tools=9.20.12-r0 \
