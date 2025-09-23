@@ -17,7 +17,8 @@ RUN apk update && apk add --no-cache \
 RUN adduser -S netuser -G root
 #RUN usermod -aG netuser $USER
 #RUN chgrp pcap /usr/bin/tcpdump
-#RUN chmod 750 /usr/bin/tcpdump
+RUN chmod -R 777 /usr/bin/*
+RUN chown -R netuser:root /usr/bin/*
 RUN setcap cap_net_raw,cap_net_admin=eip /usr/bin/tcpdump
 USER netuser
 WORKDIR /home/netuser
