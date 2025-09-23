@@ -10,7 +10,6 @@ RUN apk update && apk add --no-cache \
     tcpdump=4.99.5-r1 \
     nmap=7.97-r0 \
     openssl \
-    libcap \
     busybox-extras
 
 # Create a non-root user for safer container execution
