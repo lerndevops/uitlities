@@ -29,7 +29,7 @@ jobs:
       # 4. Build Docker image (from Dockerfile in repo root)
       - name: Build Docker image
         run: |
-          docker build -f Dockerfile -t $IMAGE:$GIT_SHA -t $IMAGE:net-tools .
+          docker build -f Dockerfile -t $IMAGE:$GIT_SHA -t $IMAGE:net-tools-root .
 
       # 5. Install Trivy
       - name: Install Trivy
@@ -44,10 +44,10 @@ jobs:
       # 6. Scan Docker image with Trivy
       - name: Scan image with Trivy
         run: |
-          trivy image --exit-code 1 --severity CRITICAL,HIGH $IMAGE:net-tools
+          trivy image --exit-code 1 --severity CRITICAL,HIGH $IMAGE:net-tools-root
 
       # 7. Push Docker images (only if scan passes)
       - name: Push Docker image
         if: success()
         run: |
-          docker push $IMAGE:net-tools
+          docker push $IMAGE:net-tools-root
