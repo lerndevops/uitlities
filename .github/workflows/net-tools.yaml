@@ -1,4 +1,4 @@
-name: net-tools
+name: net-tools-root
 on:
   push:
     branches:
