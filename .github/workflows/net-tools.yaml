@@ -2,7 +2,7 @@ name: net-tools-root
 on:
   push:
     branches:
-      - main
+      - root
 
 jobs:
   build-scan-push:
