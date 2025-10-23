@@ -24,4 +24,4 @@ RUN setcap cap_net_raw,cap_net_admin=eip /usr/bin/tcpdump
 WORKDIR /home/netuser
 
 
-CMD ["/bin/sh"]
+CMD ["/bin/sh", "sleep", "6000"]
