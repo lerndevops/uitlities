@@ -11,7 +11,17 @@ RUN apk update && apk add --no-cache \
     nmap \
     openssl \
     libcap \
-    busybox-extras
+    busybox-extras \
+    nsenter \
+    tar
+
+RUN apk add --no-cache bash \
+ && CRICTL_VERSION="v1.30.0" \
+ && ARCH=$(uname -m | sed 's/x86_64/amd64/' | sed 's/aarch64/arm64/') \
+ && curl -L https://github.com/kubernetes-sigs/cri-tools/releases/download/${CRICTL_VERSION}/crictl-${CRICTL_VERSION}-linux-${ARCH}.tar.gz -o crictl.tar.gz \
+ && tar zxvf crictl.tar.gz -C /usr/local/bin \
+ && rm -f crictl.tar.gz \
+ && chmod +x /usr/local/bin/crictl
 
 # Create a non-root user for safer container execution
 RUN adduser -S netuser -G root
