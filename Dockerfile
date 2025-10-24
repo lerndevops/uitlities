@@ -12,7 +12,6 @@ RUN apk update && apk add --no-cache \
     openssl \
     libcap \
     busybox-extras \
-    nsenter \
     tar
 
 RUN apk add --no-cache bash \
