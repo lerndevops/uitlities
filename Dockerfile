@@ -15,7 +15,7 @@ RUN apk update && apk add --no-cache \
     tar
 
 RUN apk add --no-cache bash \
- && CRICTL_VERSION="v1.31.0" \
+ && CRICTL_VERSION="1.31.1-r5" \
  && ARCH=$(uname -m | sed 's/x86_64/amd64/' | sed 's/aarch64/arm64/') \
  && curl -L https://github.com/kubernetes-sigs/cri-tools/releases/download/${CRICTL_VERSION}/crictl-${CRICTL_VERSION}-linux-${ARCH}.tar.gz -o crictl.tar.gz \
  && tar zxvf crictl.tar.gz -C /usr/local/bin \
